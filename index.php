@@ -1,36 +1,3 @@
-<? php
-session_start();
-$user = "Guest";
-if (!isset($_SESSION["username"])){
-  $_SESSION["username"] = "";
-}
-
-//if this is the first time the user enters the page, page assumes he hasn't logged in
-if (!isset($_SESSION["login"])){
-  $_SESSION["login"] = false;
-}
-
-//if the user has logged in his name will be displayed
-if (($_SESSION["login"]) == true){
-  $_SESSION["login"] = true;
-  $user = $_SESSION["username"];
-}
-
-//if there is an error with login, display error
-if (!isset($_SESSION["error"])){
-  $_SESSION["error"] = "";
-}
-
-//display error if there is one
-$error = $_SESSION["error"];
-
-
-
-
- ?>
-
-
-
 
 <!--
 This is the front page of my website(a little bland but I'm not that creative to be honest so I went with the google mentality)
@@ -38,6 +5,16 @@ This page will link to all other pages for this project(if not directly, indirec
 The hope is whatever this website lacks in visual appeal, it will gain in user will have a lot of powerfor input on the website features.
 
 -->
+<?php
+session_start();
+
+if (!isset($_SESSION["login"])){
+  $_SESSION["login"] = "Guest";
+}
+
+
+
+?>
 
 
 
@@ -76,8 +53,7 @@ The hope is whatever this website lacks in visual appeal, it will gain in user w
 
   <body>
 
-
-    <div class="site-wrapper">
+      <div class="site-wrapper">
 
       <div class="site-wrapper-inner">
 
@@ -85,7 +61,7 @@ The hope is whatever this website lacks in visual appeal, it will gain in user w
 
           <!--TOP PART / Navigation -->
 
-          <div class="masthead clearfix">
+          <div id="nav">
             <div class="inner">
               <h3 align="center">Brandon Lockridge</h3>
               <nav>
@@ -96,24 +72,45 @@ The hope is whatever this website lacks in visual appeal, it will gain in user w
                   <li><a href="https://www.reddit.com/r/soccer/">Soccer</a></li>
                   <li><a href="youtubeplayer.php">Music</a></li>
                   <li><a href="database.html">Database</a></li>
-                </ul>
+
+                  </ul>
               </nav>
-              <? php
-              if($_SESSION["login"] == false){
-                echo "<p>$error</p";
-                echo "<form action=\"process.php\" method=\"post\">
-                    <input type=\"text\" value=\"\" name=\"username\" />
-                    <input type=\"text\" value=\"\" name=\"password\" />
-                    <input type=\"submit\" value=\"Submit\" >
-              </form>"; };
-              else{
-                echo "<p>Welcome" .  "$_SESSION[\"username\"]";
-              }
-              ?>
+
             </div>
           </div>
 
+          <!--No idea why the Username is off by so much, but it has to do with the toggle  -->
+          <div>
+          <form align="center" action="process_login.php" method="post" id="login">
+                <p align="center">Username:<input type="text" value="" name="username" /></p>
+                <p align="center">Password:<input type="text" value="" name="password" /></p>
+                <p align="center"><input name="action"  type="submit" value="Login" /></p>
+                <?php if($_SESSION["login"] != " Guest"){echo '<p align="center"><input name="action"  type="submit" value="Logout" /></p>'; } ?>
+                <p align="center"><input name="action" "action" type="submit" value="Register" /> <?php echo $_SESSION["register_error"]; ?></p>
+
+              </form>
+              <form class="flexsearch-form" id="mainForm">
+                    <div class="flexsearch-input-wrapper">
+                    <input id="input" class="flexsearch-input" type="search" placeholder="search" list="stuff">
+                    </div>
+                    <p>
+                    <input class="flexsearch-submit" type="submit" value="submit"/>
+                    <p>
+               </form>
+               <button id="lucky">Extra points button</button>
+          </div>
+
+
           <!-- Sectionnew section -->
+
+
+        <p>
+        <?php echo "<p align=\"center\">Welcome," . $_SESSION["login"] . "!</p>"; ?>
+        </p>
+        <p>
+        <button id="button">Toggle login field</button>
+
+      </p>
 
 
 
@@ -123,7 +120,10 @@ The hope is whatever this website lacks in visual appeal, it will gain in user w
             <p class="lead">
 
 
-              <p><iframe width="560" height="315" src="https://www.youtube.com/embed/2RrhwDKw-j4" frameborder="0" allowfullscreen></iframe></p>
+              <p id="player"><iframe width="560" height="315" src="https://www.youtube.com/embed/2RrhwDKw-j4" frameborder="0" allowfullscreen></iframe></p>
+
+
+
 
             </p>
           </div>
@@ -145,7 +145,9 @@ The hope is whatever this website lacks in visual appeal, it will gain in user w
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="register.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

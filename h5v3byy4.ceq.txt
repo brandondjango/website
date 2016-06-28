@@ -1,0 +1,31 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+#
+# Initial commit
+#
+# Changes to be committed:
+#	new file:   Project Part 2 Write Up.pdf
+#	new file:   cover/cover.css
+#	new file:   cover/cover.php
+#	new file:   cover/cover1.css
+#	new file:   cover/foresthills.jpg
+#	new file:   cover/index.html
+#	new file:   cover/resume.pdf
+#	new file:   css/cover.css
+#	new file:   css/cover1.css
+#	new file:   database.html
+#	new file:   database.php
+#	new file:   images/matt.jpg
+#	new file:   index.php
+#	new file:   jsstuff.html
+#	new file:   pdf/resume.pdf
+#	new file:   process_login.php
+#	new file:   register.js
+#	new file:   surprise.js
+#	new file:   text/coolstuff.txt
+#	new file:   text/songnames.txt
+#	new file:   youtubeplayer.php
+#
+
